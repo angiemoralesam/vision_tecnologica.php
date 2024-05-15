@@ -1,3 +1,30 @@
+<?php
+    session_start();
+    if(isset($_POST["user"]) && isset($_POST["pass"])){
+        include_once ("./usuario.php");
+        $users = new usuario($_POST["user"], $_POST["pass"]);
+        
+        if($users->iniciar_sesion() == 1){
+            $_SESSION["status"] = true;
+            $_SESSION["nombre"] = $users->getUser();
+            header("Location: ./pagina_ingreso.php");
+        }else{
+            echo '
+                <script>
+                    Swal.fire({
+                        title: "proyectosena",
+                        text: "¡Error al iniciar sesión!",
+                        icon: "error"
+                    });
+                </script>
+            ';
+            //echo "Usuario y/o Contraseña incorrectos <i class='bi bi-emoji-frown'></i><br>";
+        }
+    }  
+    if(isset($_POST["inc"])){
+        echo "Hola";
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,11 +57,12 @@
         <button class="btn btn-outline-secondary custom-button" type="submit">buscar</button>
       </form>
        <br>
+       <br>
       <div class="enlaces" id="enlaces">
-          <a href="../index.html" id="enlace-inicio" class="btn-header">INICIO</a>
-          <a href="../pages/servicios.html" id="enlace-equipo" class="btn-header">SERVICIOS</a>
-          <a href="../pages/productos.html" id="enlace-servicio" class="btn-header">PRODUCTOS</a>
-          <a href="../pages/ofertas.html" id="enlace-trabajo" class="btn-header">OFERTAS</a>
+          <a href="/proyectosena/index.html" id="enlace-inicio" class="btn-header">INICIO</a>
+          <a href="/proyectosena/pages/servicios.html" id="enlace-equipo" class="btn-header">SERVICIOS</a>
+          <a href="/proyectosena/pages/productos.html" id="enlace-servicio" class="btn-header">PRODUCTOS</a>
+          <a href="/proyectosena/pages/ofertas.html" id="enlace-trabajo" class="btn-header">OFERTAS</a>
     </div>
             </div>
             <div class="galeria-usuario">
@@ -76,17 +104,17 @@
     <main class="main">
       <div>
             <section class="contenedor-from">
-                  <form class="login">
+                  <form class="login" action="./login.php" method="post">
                     <h1>inicio sesión</h1>
                     <br>
                     <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">correo electronico</label>
-                    <input type="email" class="form-control campo-corto" id="exampleInputEmail1" placeholder="ingresar correo electronico" aria-describedby="emailHelp">
+                    <input type="text" name="user"  class="form-control campo-corto" id="exampleInputEmail1" placeholder="ingresar correo electronico" aria-describedby="emailHelp">
                   </div>
                   <br>
                    <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control campo-corto" id="exampleInputPassword1" placeholder="ingresar contraseña">
+                    <input type="password" name="pass" class="form-control campo-corto" id="exampleInputPassword1" placeholder="ingresar contraseña">
                   </div>
                   <br>
                   <br>
@@ -98,7 +126,7 @@
                       </div>
                       <p>Olvido la Contraseña</p>
                     </div>
-                    <button class="btn btn-dark btn-lg" type="submit">Enviar</button>
+                    <button class="btn btn-dark btn-lg" type="submit" name="inc">Enviar</button>
                   </form>
                 </div>
             </section>

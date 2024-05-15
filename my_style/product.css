@@ -1,0 +1,76 @@
+.galeria-usuario a{
+    text-decoration: none;
+    color: #faf5f5;
+    font-size: 18px;
+}
+
+.container {
+    width: 100%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.product {
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 250px;
+    position: relative;
+}
+
+.product.oferta::before {
+    content: "OFERTA"; 
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #ff9800; 
+    color: #fff; 
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+.product img {
+    max-width:80%;
+    height: auto;
+}
+
+.product h2 {
+    font-size: 14px;
+    width: 100%;
+}
+
+.product ul {
+    font-size: 10px;
+    list-style-type: none;
+    text-align: initial;
+}
+
+.price {
+    font-weight: bold;
+    color: #333;
+    font-weight: 500;
+}
+
+.precioAntiguo {
+    text-decoration: line-through;
+    color: #ff9800;
+}
+
+.container button {
+    background-color: #1d211d;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.container button:hover {
+    background-color:  rgba(12, 52, 59, 0.623);
+}
